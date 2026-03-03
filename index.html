@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Anniversary ❤️</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@300;400;600&display=swap');
+
+:root {
+  --primary: #ff2e63;
+  --secondary: #ff4d79;
+  --glass: rgba(255, 255, 255, 0.25);
+  --glass-border: rgba(255, 255, 255, 0.4);
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Poppins', sans-serif;
+  color: #5d001e;
+  overflow-x: hidden;
+  min-height: 100vh;
+  /* 1. ANIMATED BACKGROUND - To remove flatness */
+  background: linear-gradient(-45deg, #ffafbd, #ffc3a0, #ffafbd, #ff85a1);
+  background-size: 400% 400%;
+  animation: gradientBG 15s ease infinite;
+}
+
+@keyframes gradientBG {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.hidden { display: none !important; }
+
+h2 {
+  font-family: 'Dancing Script', cursive;
+  font-size: 3rem;
+  margin-bottom: 25px;
+  text-shadow: 0 4px 10px rgba(0,0,0,0.05);
+  filter: drop-shadow(0 0 10px rgba(255,255,255,0.5));
+}
+
+#main {
+  padding: 60px 20px;
+  max-width: 600px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+/* 2. SMOOTH BUTTONS WITH SHIMMER */
+button {
+  position: relative;
+  overflow: hidden;
+  padding: 16px 40px;
+  border: none;
+  border-radius: 50px;
+  background: linear-gradient(45deg, var(--primary), var(--secondary));
+  color: white;
+  font-size: 18px;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: 25px;
+  box-shadow: 0 10px 25px rgba(255, 46, 99, 0.4);
+  /* Use a more natural "elastic" transition */
+  transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+button::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(rgba(255,255,255,0), rgba(255,255,255,0.4), rgba(255,255,255,0));
+  transform: rotate(45deg);
+  transition: 0.5s;
+}
+
+button:hover::after {
+  left: 100%;
+}
+
+button:hover {
+  transform: translateY(-6px) scale(1.03);
+  box-shadow: 0 15px 35px rgba(255, 46, 99, 0.6);
+}
+
+/* 3. DEPTH POPUP - Floating Glass */
+.popup {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+
+.popup-box {
+  background: var(--glass);
+  backdrop-filter: blur(20px);
+  padding: 50px 30px;
+  border-radius: 40px;
+  box-shadow: 0 30px 60px rgba(0,0,0,0.15);
+  border: 1px solid var(--glass-border);
+  text-align: center;
+  max-width: 350px;
+  animation: floatBox 4s ease-in-out infinite;
+}
+
+@keyframes floatBox {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-15px); }
+}
+
+/* 4. PHYSICAL CARD ANIMATION */
+.cards {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  margin-top: 40px;
+  perspective: 1200px;
+}
+
+.card {
+  width: 110px;
+  height: 150px;
+  background: rgba(255, 255, 255, 0.8);
+  color: var(--primary);
+  border-radius: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  cursor: pointer;
+  box-shadow: 0 15px 30px rgba(0,0,0,0.08);
+  border: 1px solid white;
+  /* Multi-stage transition for smoothness */
+  transition: transform 0.8s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s;
+  transform-style: preserve-3d;
+}
+
+.card:hover {
+  
+  box-shadow: 0 25px 45px rgba(255, 46, 99, 0.15);
+}
+
+.card.flipped {
+  transform: rotateY(360deg) scale(1.1);
+  background: #ffffff;
+  color: var(--primary);
+  font-size: 15px;
+  padding: 15px;
+  font-weight: 600;
+}
+
+/* 5. SMOOTH PULSE (HOLD AREA) */
+#holdArea {
+  margin: 50px auto;
+  padding: 30px;
+  width: 160px;
+  height: 160px;
+  border: 4px dashed white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.15);
+  cursor: pointer;
+  animation: organicPulse 3s infinite ease-in-out;
+  transition: all 0.4s;
+}
+
+@keyframes organicPulse {
+  0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(255,255,255,0.4); }
+  50% { transform: scale(1.1); box-shadow: 0 0 30px 15px rgba(255,255,255,0); }
+  100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(255,255,255,0); }
+}
+
+#holdText {
+  font-size: 24px;
+  color: var(--primary);
+  font-weight: 700;
+  margin-top: 20px;
+  opacity: 0;
+  transition: opacity 1.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* FINAL TOUCHES */
+#finalMsg {
+  font-family: 'Dancing Script', cursive;
+  font-size: 30px;
+  color: var(--primary);
+  background: rgba(255, 255, 255, 0.9);
+  padding: 30px;
+  border-radius: 30px;
+  box-shadow: 0 20px 50px rgba(0,0,0,0.1);
+  animation: slideInUp 1.2s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+@keyframes slideInUp {
+  from { opacity: 0; transform: translateY(50px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.heartFloat {
+  position: fixed;
+  bottom: -60px;
+  font-size: 35px;
+  animation: floatUp 5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  z-index: 1;
+}
+
+@keyframes floatUp {
+  0% { transform: translateY(0) rotate(0deg) scale(0.5); opacity: 0; }
+  20% { opacity: 0.8; }
+  100% { transform: translateY(-115vh) rotate(45deg) scale(1.2); opacity: 0; }
+}
+</style>
+</head>
+
+<body>
+
+<audio id="bgMusic" loop>
+  <source src="romantic.mp3" type="audio/mpeg">
+</audio>
+
+<div id="popup" class="popup">
+  <div class="popup-box">
+    <h2>Do you want to see what I made for you? 💕</h2>
+    <button onclick="startCelebration()">Yes ❤️</button>
+  </div>
+</div>
+
+<div id="main" class="hidden">
+  <h2>Flip the cards 💌</h2>
+  <div class="cards">
+    <div class="card" onclick="flipCard(this,'You are my happiness 💕')">💌</div>
+    <div class="card" onclick="flipCard(this,'I choose you every day ♾️')">💌</div>
+    <div class="card" onclick="flipCard(this,'Forever with you ❤️')">💌</div>
+  </div>
+
+  <div id="holdGame" class="hidden">
+    <h2>Hold to feel my promise ✨</h2>
+    <div id="holdArea"
+      onmousedown="startHold()"
+      onmouseup="endHold()"
+      ontouchstart="startHold()"
+      ontouchend="endHold()">
+      Hold me 💕
+    </div>
+    <p id="holdText">I’ll never let you go ❤️</p>
+    <button onclick="startFinalGame()">Next 💖</button>
+  </div>
+
+  <div id="finalGame" class="hidden">
+    <h2>One last thing… 💞</h2>
+    <button onclick="finalLove()">Tap My Promise 3 times ❤️</button>
+    <div id="finalMsg" class="hidden">
+      You are my today, my tomorrow, and my forever ❤️  
+      Happy Anniversary 💖 , 
+      <br> atlast .... I love you , I love you , I love you so sooo muchhh
+    </div>
+  </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
