@@ -10,24 +10,38 @@ const finalMsg = document.getElementById("finalMsg");
 let flippedCount = 0;
 let holdTimer;
 
+
 // START
 function startCelebration(){
   popup.style.display = "none";
   main.classList.remove("hidden");
-  bgMusic.play();
+
+  // play music safely
+  if(bgMusic){
+    bgMusic.volume = 0.5;
+    bgMusic.play().catch(() => {
+      console.log("Autoplay blocked until interaction");
+    });
+  }
 }
+
 
 // GAME 1 – FLIP
 function flipCard(card,text){
   if(card.classList.contains("flipped")) return;
+
   card.classList.add("flipped");
   card.innerText = text;
+
   flippedCount++;
 
   if(flippedCount === 3){
-    setTimeout(()=>holdGame.classList.remove("hidden"),800);
+    setTimeout(()=>{
+      holdGame.classList.remove("hidden");
+    },800);
   }
 }
+
 
 // GAME 2 – HOLD
 function startHold(){
@@ -35,9 +49,11 @@ function startHold(){
     holdText.style.opacity = 1;
   },800);
 }
+
 function endHold(){
   clearTimeout(holdTimer);
 }
+
 
 // GAME 3 – FINAL
 function startFinalGame(){
@@ -47,16 +63,24 @@ function startFinalGame(){
 
 function finalLove(){
   finalMsg.classList.remove("hidden");
+
   for(let i=0;i<20;i++){
     createHeart();
   }
 }
 
+
+// HEART ANIMATION
 function createHeart(){
   const h = document.createElement("div");
   h.className = "heartFloat";
   h.innerText = "💖";
+
   h.style.left = Math.random()*100 + "vw";
+
   document.body.appendChild(h);
-  setTimeout(()=>h.remove(),4000);
+
+  setTimeout(()=>{
+    h.remove();
+  },4000);
 }
